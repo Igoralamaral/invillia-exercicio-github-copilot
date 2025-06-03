@@ -20,17 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        // Monta a lista de participantes
+        // Monta a lista de participantes com as classes corretas
         let participantsHtml = "";
         if (details.participants.length > 0) {
           participantsHtml = `
-            <p><strong>Inscritos:</strong></p>
-            <ul>
-              ${details.participants.map(email => `<li>${email}</li>`).join("")}
+            <div class="participants-list-title"><strong>Inscritos:</strong></div>
+            <ul class="participants-list">
+              ${details.participants.map(email => `
+                <li class="participant-item">
+                  <span class="participant-icon" title="Participante">&#128100;</span>
+                  <span class="participant-email">${email}</span>
+                </li>
+              `).join("")}
             </ul>
           `;
         } else {
-          participantsHtml = `<p><strong>Inscritos:</strong> Nenhum participante ainda.</p>`;
+          participantsHtml = `<p class="participants-list-title"><strong>Inscritos:</strong> Nenhum participante ainda.</p>`;
         }
 
         activityCard.innerHTML = `
